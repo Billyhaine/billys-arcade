@@ -1,0 +1,33 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-board {
+    position: relative;
+    width: 630px;
+    height: 630px;
+    background-size: 30px 30px;
+    border: 1px gray solid;
+    background-image: linear-gradient(gray 1px, transparent 1px), linear-gradient(90deg, gray 1px, transparent 1px);
+}
+
+.food {
+    position: absolute;
+    width: 31px;
+    height: 31px;
+    background-color: red;
+}
+
+.segment {
+    position: absolute;
+    width: 31px;
+    height: 31px;
+    background-color: green;
+}
