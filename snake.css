@@ -25,9 +25,23 @@ body {
     background-color: red;
 }
 
+.head {
+    position: absolute;
+    width: 31px;
+    height: 31px;
+    background-color: blue;
+}
+
 .segment {
     position: absolute;
     width: 31px;
     height: 31px;
     background-color: green;
+}
+
+.tail {
+    position: absolute;
+    width: 31px;
+    height: 31px;
+    background-color: yellow;
 }

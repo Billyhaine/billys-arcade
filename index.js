@@ -1,5 +1,7 @@
 console.log('loaded snake game');
 
+import { Segment } from './segment.js';
+
 const board = document.getElementById('game-board');
 
 let HEAD;
@@ -26,22 +28,19 @@ const initialise = () => {
     const food = document.createElement('div');
     food.className = 'food';
 
-    food.style.left = foodCoords.x;
-    food.style.top = foodCoords.y;
+    food.style.left = FOOD_COORDS.x;
+    food.style.top = FOOD_COORDS.y;
 
-    const snakeHead = document.createElement('div');
-    snakeHead.className = 'segment';
-
-    snakeHead.style.left = '150px';
-    snakeHead.style.top = '300px';
+    // create a new segment, this handles creating the element and adding it to the board
+    const snakeHead = new Segment({ x:150, y: 300 }, board);
 
     HEAD = snakeHead;
     
-    board.appendChild(snakeHead);
     board.appendChild(food);
 }
 
 const tick = () => {
+    // snake movement
     switch (DIRECTION) {
         case 'UP':
             return;
@@ -52,6 +51,8 @@ const tick = () => {
         case 'LEFT':
             return;
     }
+
+    
 }
 
 // around 60fps
