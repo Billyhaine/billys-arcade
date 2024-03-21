@@ -32,6 +32,8 @@ body {
     height: 31px;
     background-color: blue;
     z-index: 1;
+    transition-property: top, left;
+    transition-duration: 175ms;
 }
 
 .segment {
@@ -40,6 +42,8 @@ body {
     height: 31px;
     background-color: green;
     z-index: 1;
+    transition-property: top, left;
+    transition-duration: 175ms;
 }
 
 .tail {
@@ -48,4 +52,6 @@ body {
     height: 31px;
     background-color: yellow;
     z-index: 1;
+    transition-property: top, left;
+    transition-duration: 175ms;
 }
