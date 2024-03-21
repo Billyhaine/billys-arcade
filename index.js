@@ -49,8 +49,6 @@ const initialise = () => {
 
 // resets the game back to the default state.
 const resetGame = () => {
-    console.log('resetting');
-
     // remove 
     HEAD.reset();
     FOOD.remove();
@@ -107,9 +105,31 @@ const tick = () => {
         FOOD.style.left = `${NEW_COORDS.x}px`;
         FOOD.style.top = `${NEW_COORDS.y}px`;
 
+        let NEW_SEGMENT_DIRECTION;
+
+        // we want to put the new segment _behind_
+        switch (DIRECTION) {
+            case 'UP':
+                NEW_SEGMENT_DIRECTION = 'DOWN';
+                break;
+            case 'DOWN':
+                NEW_SEGMENT_DIRECTION = 'UP';
+                break;
+            case 'RIGHT':
+                NEW_SEGMENT_DIRECTION = 'LEFT';
+                break;
+            case 'LEFT':
+                NEW_SEGMENT_DIRECTION = 'RIGHT';
+                break;
+        }
+
         // secondly we spawn a new segment on the snake.
-        HEAD.addSegment(DIRECTION, board)
+        HEAD.addSegment(NEW_SEGMENT_DIRECTION, board);
     };
+
+    if(HEAD.knotted()) {
+        resetGame();
+    }
 }
 
 // around 60fps

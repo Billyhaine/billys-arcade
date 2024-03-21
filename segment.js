@@ -41,11 +41,15 @@ export class Segment {
         // segment is below
         if(this.coords.y < segment.coords.y) return 'DOWN';
     }
-    /*
-     * A simple check as to whether or not this Segment is the tail of the snake.
+
+    /**
+     * Checks if a set of coordinates overlaps with either this segments coordinates or any of it's children.
      */
-    isTailSegment(){
-        return !this.child;
+    knotted(coords){
+        if(!this.parent){
+            return this.child?.knotted(this.coords);
+        }
+        return ((coords.x === this.coords.x && coords.y === this.coords.y) || this.child?.knotted(coords))
     }
 
     /**
@@ -56,7 +60,7 @@ export class Segment {
      */
     addSegment(direction, board){
         // if it isn't the tail figure out the desired direction & pass it down
-        if(!this.isTailSegment()){
+        if(!!this.child){
             this.child.addSegment(this.getRelativeDirection(this.child), board);
         } else {
             let TAIL_COORDS;
@@ -64,19 +68,19 @@ export class Segment {
             switch (direction) {
                 case 'UP':
                 // one space below
-                TAIL_COORDS = {...this.coords, y: this.coords.y + 30 }
+                TAIL_COORDS = {...this.coords, y: this.coords.y - 30 }
                 break;
             case 'RIGHT':
                 // one space to the left
-                TAIL_COORDS = {...this.coords, x: this.coords.x - 30 }
+                TAIL_COORDS = {...this.coords, x: this.coords.x + 30 }
                 break;
             case 'DOWN':
                 // one space above
-                TAIL_COORDS = {...this.coords, y: this.coords.y - 30 }
+                TAIL_COORDS = {...this.coords, y: this.coords.y + 30 }
                 break;
             case 'LEFT':
                 // one space to the right
-                TAIL_COORDS = {...this.coords, x: this.coords.x + 30 }
+                TAIL_COORDS = {...this.coords, x: this.coords.x - 30 }
                 break;
             }
 
@@ -93,7 +97,7 @@ export class Segment {
         const isOverlappingSelf = this.coords.x === targetCoords.x && this.coords.y === targetCoords.y
 
         // if this is the tail simply return whether it's overlapping itself
-        if(this.isTailSegment()){
+        if(!this.child){
             return isOverlappingSelf;
         }
 
@@ -117,33 +121,45 @@ export class Segment {
 
         switch (direction) {
             case 'UP':
-                newCoords = {...this.coords, y: Math.max(this.coords.y - 30, 0) }
-                   
+                newCoords = {...this.coords, y: this.coords.y - 30 }
+
+                // BOOM
+                if(newCoords.y < 0) this.reset();
+ 
                 this.element.style.left = `${newCoords.x}px`;
                 this.element.style.top = `${newCoords.y}px`;
 
                 break;
             case 'DOWN':
-                newCoords = {...this.coords, y: Math.min(this.coords.y + 30, 600) }
-                    
+                newCoords = {...this.coords, y: this.coords.y + 30 }
+
+                // BOOM
+                if(newCoords.y > 600) this.reset();
+
                 this.element.style.left = `${newCoords.x}px`;
                 this.element.style.top = `${newCoords.y}px`;
                 break;
             case 'LEFT':
-                newCoords = {...this.coords, x: Math.max(this.coords.x - 30, 0) }
+                newCoords = {...this.coords, x: this.coords.x - 30 }
+
+                // BOOM
+                if(newCoords.x < 0) this.reset();
                     
                 this.element.style.left = `${newCoords.x}px`;
                 this.element.style.top = `${newCoords.y}px`;
                 break;
             case 'RIGHT':
-                newCoords = {...this.coords, x: Math.min(this.coords.x + 30, 600) }
+                newCoords = {...this.coords, x: this.coords.x + 30 }
+
+                // BOOM
+                if(newCoords.x > 600) this.reset();
                    
                 this.element.style.left = `${newCoords.x}px`;
                 this.element.style.top = `${newCoords.y}px`;
-                break;   
+                break;
         }
 
-        if(!this.isTailSegment()){
+        if(!!this.child){
             this.child.move();
         }
 
