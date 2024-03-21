@@ -30,7 +30,7 @@ body {
     position: absolute;
     width: 31px;
     height: 31px;
-    background-color: blue;
+    background-image: url("assets/head.png");
     z-index: 1;
     transition-property: top, left;
     transition-duration: 175ms;
@@ -40,7 +40,7 @@ body {
     position: absolute;
     width: 31px;
     height: 31px;
-    background-color: green;
+    background-image: url("assets/segment.png");
     z-index: 1;
     transition-property: top, left;
     transition-duration: 175ms;
@@ -50,7 +50,7 @@ body {
     position: absolute;
     width: 31px;
     height: 31px;
-    background-color: yellow;
+    background-image: url("assets/tail.png");
     z-index: 1;
     transition-property: top, left;
     transition-duration: 175ms;
