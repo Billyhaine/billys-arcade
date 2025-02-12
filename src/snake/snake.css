@@ -1,14 +1,3 @@
-body {
-    background-color: black;
-    color: white;
-}
-
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .game-board {
     position: relative;
     width: 630px;
