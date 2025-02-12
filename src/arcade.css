@@ -1,0 +1,59 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.arcade-banner {
+    font-family: 'Arcade Interlaced', sans-serif;
+    color: #fff;
+    text-shadow: -2px -2px 1px #059212, -3px -3px 1px #06D001, 0px 0px 20px #9BEC00;
+    font-weight: 100;
+    width: max-content;
+    margin: 15px auto 0 auto;
+}
+
+h1.arcade-banner {
+    font-size: 65px;
+}
+
+h2.arcade-banner {
+    font-size: 30px;
+    text-shadow: -1px -1px 1px #3F0071, -2px -2px 1px #400D51, 0px 0px 15px #A31ACB;
+    margin-bottom: 15px;
+}
+
+.game-selection {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 66%;
+    margin: 0 auto;
+    gap: 50px;
+}
+
+.game-tile {
+    grid-column: span 1;
+    font-family: 'Arcade Normal', sans-serif;
+    font-size: 25px;
+    border: 3px solid white;
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+    width: min-content;
+}
+
+.game-icon {
+    width: 250px;
+    height: 250px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+
+

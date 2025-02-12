@@ -4,14 +4,32 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>snake game 🤷</title>
-        <link rel="stylesheet" href="./snake.css" />
+        <title>Billys Arcade</title>
+
+        <!-- External font import, purely for display -->
+        <link href="https://fonts.cdnfonts.com/css/arcade" rel="stylesheet">
+
+        <link rel="stylesheet" href="./src/snake/snake.css" />
+        <link rel="stylesheet" href="./src/arcade.css" />
     </head>
 
     <body>
-        <h1>Raw HTML snake game</h1>
+        <h1 class="arcade-banner">Billy's Arcade</h1>
+        <h2 class="arcade-banner">Raw HTML snake game</h2>
         <div class="container">
-            <div class="game-board" id="game-board">
+            <div class="game-selection">
+                <div class="game-tile" id="snake-game-tile">
+                    <img class="game-icon" src="./assets/snake/game.png"/>
+                    snake game
+                </div>
+                <div class="game-tile">
+                    <img class="game-icon" src="./assets/todo.png"/>
+                    TODO
+                </div>
+                <div class="game-tile">
+                    <img class="game-icon" src="./assets/todo.png"/>
+                    TODO
+                </div>
             </div>
         </div>
         <script type="module" src="./index.js"></script>
