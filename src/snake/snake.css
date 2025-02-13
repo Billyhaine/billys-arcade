@@ -19,7 +19,7 @@
     position: absolute;
     width: 31px;
     height: 31px;
-    background-image: url("assets/head.png");
+    background-image: url("../../assets/snake/head.png");
     z-index: 1;
     transition-property: top, left;
     transition-duration: 175ms;
@@ -29,7 +29,7 @@
     position: absolute;
     width: 31px;
     height: 31px;
-    background-image: url("assets/segment.png");
+    background-image: url("../../assets/snake/segment.png");
     z-index: 1;
     transition-property: top, left;
     transition-duration: 175ms;
@@ -39,7 +39,7 @@
     position: absolute;
     width: 31px;
     height: 31px;
-    background-image: url("assets/tail.png");
+    background-image: url("../../assets/snake/tail.png");
     z-index: 1;
     transition-property: top, left;
     transition-duration: 175ms;
