@@ -52,6 +52,10 @@ export class Segment {
         return ((coords.x === this.coords.x && coords.y === this.coords.y) || this.child?.knotted(coords))
     }
 
+    outOfBounds(){
+        return this.coords.y < 0 || this.coords.y > 600 || this.coords.x < 0 || this.coords.x > 600;
+    }
+
     /**
      * A recursive method used to add the end of the snake.
      * 
@@ -122,9 +126,6 @@ export class Segment {
         switch (direction) {
             case 'UP':
                 newCoords = {...this.coords, y: this.coords.y - 30 }
-
-                // BOOM
-                if(newCoords.y < 0) this.reset();
  
                 this.element.style.left = `${newCoords.x}px`;
                 this.element.style.top = `${newCoords.y}px`;
@@ -133,26 +134,17 @@ export class Segment {
             case 'DOWN':
                 newCoords = {...this.coords, y: this.coords.y + 30 }
 
-                // BOOM
-                if(newCoords.y > 600) this.reset();
-
                 this.element.style.left = `${newCoords.x}px`;
                 this.element.style.top = `${newCoords.y}px`;
                 break;
             case 'LEFT':
                 newCoords = {...this.coords, x: this.coords.x - 30 }
-
-                // BOOM
-                if(newCoords.x < 0) this.reset();
                     
                 this.element.style.left = `${newCoords.x}px`;
                 this.element.style.top = `${newCoords.y}px`;
                 break;
             case 'RIGHT':
                 newCoords = {...this.coords, x: this.coords.x + 30 }
-
-                // BOOM
-                if(newCoords.x > 600) this.reset();
                    
                 this.element.style.left = `${newCoords.x}px`;
                 this.element.style.top = `${newCoords.y}px`;

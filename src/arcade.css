@@ -13,10 +13,35 @@ body {
 
 /* The container that displays the "game over" banner & "restart" button. All game boards should have `display: relative` */
 .game-over-container {
-    display: absolute;
-    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: min-content;
+    /* arbitrarily high "above everything else" number */
+    z-index: 999; 
+    background-color: rgba(0,0,0, 0.85);
+    padding: 12px;
+    border: 2px solid #b00909;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
+.game-over-button {
+    background-color: transparent;    
+    font-family: 'Arcade Normal', sans-serif;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    color: white;
+    font-size: 20px;
+    padding: 4px;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+
 
 /* The banners headings for the titles in the arcades */
 .arcade-banner {
@@ -47,12 +72,12 @@ h1.arcade-banner {
 
 /* font-size for the h2 arcade banners specifically */
 h2.arcade-banner {
-    font-size: 45px;
+    font-size: 50px;
 }
 
 /* font-size for the h3 arcade banners specifically */
 h3.arcade-banner {
-    font-size: 30px;
+    font-size: 45px;
 }
 
 /* a gridded container that the game selection tiles sit within */
