@@ -3,32 +3,59 @@ body {
     color: white;
 }
 
+/* The overall container that has both the game selector & the games themselves in it. */
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
+/* The container that displays the "game over" banner & "restart" button. All game boards should have `display: relative` */
+.game-over-container {
+    display: absolute;
+    margin: auto;
+    width: min-content;
+}
 
+/* The banners headings for the titles in the arcades */
 .arcade-banner {
     font-family: 'Arcade Interlaced', sans-serif;
     color: #fff;
     text-shadow: -2px -2px 1px #059212, -3px -3px 1px #06D001, 0px 0px 20px #9BEC00;
     font-weight: 100;
     width: max-content;
-    margin: 15px auto 0 auto;
+    margin: 15px auto 15px auto;
 }
 
+/* overwrite styling for the banners that specifically applies to the game over banner */
+.game-over {
+    font-style: italic;
+    color: red;
+    text-shadow: -2px -2px 1px #750505, -3px -3px 1px #bf0808, 0px 0px 20px #e60909;
+}
+
+/* overwrite the text shadow for game titles themselves */
+.game-title {
+    text-shadow: -1px -1px 1px #3F0071, -2px -2px 1px #400D51, 0px 0px 15px #A31ACB;
+}
+
+/* font-size for the h1 arcade banners specifically */
 h1.arcade-banner {
     font-size: 65px;
 }
 
+/* font-size for the h2 arcade banners specifically */
 h2.arcade-banner {
-    font-size: 30px;
-    text-shadow: -1px -1px 1px #3F0071, -2px -2px 1px #400D51, 0px 0px 15px #A31ACB;
-    margin-bottom: 15px;
+    font-size: 45px;
 }
 
+/* font-size for the h3 arcade banners specifically */
+h3.arcade-banner {
+    font-size: 30px;
+}
+
+/* a gridded container that the game selection tiles sit within */
 .game-selection {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -37,6 +64,7 @@ h2.arcade-banner {
     gap: 50px;
 }
 
+/* game selection tile, sits within the `.game-selection` */
 .game-tile {
     grid-column: span 1;
     font-family: 'Arcade Normal', sans-serif;
@@ -48,6 +76,7 @@ h2.arcade-banner {
     width: min-content;
 }
 
+/* icon for the games, sits within the `.game-tile` */
 .game-icon {
     width: 250px;
     height: 250px;
