@@ -15,7 +15,7 @@ export class Segment {
 
         // create the element for the segment
         const element = document.createElement('div');
-        element.className = className;
+        element.className = `segment ${className}`;
 
         // set the position of the segment as per `coords`
         element.style.left = `${coords.x}px`;
@@ -108,7 +108,7 @@ export class Segment {
 
             this.child = TAIL;
 
-            if(this.parent) this.element.className = 'segment';
+            if(this.parent) this.element.className = 'segment middle';
         }
     }
 
