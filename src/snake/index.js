@@ -16,13 +16,10 @@ const DEFAULT_FOOD_COORDS = {
 // the coordinates of the food, stored to avoid placing things ontop of eachother.
 let FOOD_COORDS = DEFAULT_FOOD_COORDS;
 
-// direction the snake is heading in.
-let DIRECTION = 'RIGHT';
-
 // general game tick fn, run at an interval
 const tick = () => {
     // snake movement
-    HEAD.move(DIRECTION);
+    HEAD.move();
     
     if(HEAD.coords.x === FOOD_COORDS.x && HEAD.coords.y === FOOD_COORDS.y){
         // firstly we move the food
@@ -40,7 +37,7 @@ const tick = () => {
         let NEW_SEGMENT_DIRECTION;
 
         // we want to put the new segment _behind_
-        switch (DIRECTION) {
+        switch (HEAD.getDirection()) {
             case 'UP':
                 NEW_SEGMENT_DIRECTION = 'DOWN';
                 break;
@@ -78,7 +75,7 @@ const initialise = () => {
     FOOD = food;
 
     // create a new segment, this handles creating the element and adding it to the board
-    const snakeHead = new Segment({ x:150, y: 300 }, board);
+    const snakeHead = new Segment({ x:150, y: 300 }, board, null, 'RIGHT');
 
     HEAD = snakeHead;
     
@@ -133,7 +130,6 @@ const resetGame = () => {
     document.getElementById('game-over-container')?.remove();
 
     FOOD_COORDS = DEFAULT_FOOD_COORDS;
-    DIRECTION = "RIGHT";
 
     initialise();
 }
@@ -146,19 +142,19 @@ const keyListener = (e) => {
         // change direction to 'UP'
         case 'ArrowUp':
         case 'w':
-            if(DIRECTION !== 'DOWN') DIRECTION = 'UP';
+            if(HEAD?.getDirection() !== 'DOWN') HEAD.setDirection('UP');
             return;
         // change direction to 'RIGHT'
         case 'd' || 'ArrowRight':
-            if(DIRECTION !== 'LEFT') DIRECTION = 'RIGHT';
+            if(HEAD?.getDirection() !== 'LEFT') HEAD.setDirection('RIGHT');
             return;
         // change direction to 'DOWN'
         case 's' || 'ArrowDown':
-            if(DIRECTION !== 'UP') DIRECTION = 'DOWN';
+            if(HEAD?.getDirection() !== 'UP') HEAD.setDirection('DOWN');
             return;
         // change direction to 'LEFT'
         case 'a' || 'ArrowLeft':
-            if(DIRECTION !== 'RIGHT') DIRECTION = 'LEFT';
+            if(HEAD?.getDirection() !== 'RIGHT') HEAD.setDirection('LEFT');
             return;
         // reset the game back to the default state
         case 'Enter':

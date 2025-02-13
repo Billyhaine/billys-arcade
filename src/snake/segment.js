@@ -3,10 +3,12 @@ export class Segment {
     element;
     parent;
     child;
+    direction;
 
-    constructor(coords, board, parent){
+    constructor(coords, board, parent, direction){
         this.coords = coords;
         this.parent = parent;
+        this.direction = direction;
 
         // by creating an element via the constructor the segment is always either the head or tail
         const className = parent ? 'tail' : 'head';
@@ -23,6 +25,20 @@ export class Segment {
         board.appendChild(element);
 
         this.element = element;
+    }
+
+    /*
+     * Changes the direction the segment is heading in.
+    */
+    setDirection(dir){
+        this.direction = dir;
+    };
+
+    /* 
+     * Gets the direction that the segments is heading in.
+    */
+    getDirection(){
+        return this.direction;
     }
 
     /**
@@ -115,9 +131,9 @@ export class Segment {
      * @param direction One of 'UP', 'RIGHT', 'LEFT', 'DOWN', NOTE: if this isnt the head this won't be passed.
      * @returns Moves this particular segment in the desired direction & triggers successive moves
      */
-    move(dir){
+    move(){
         let newCoords;
-        let direction = dir;
+        let direction = this.direction;
 
         if(this.parent){
             direction = this.getRelativeDirection(this.parent);
